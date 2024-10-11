@@ -1,5 +1,5 @@
 const express = require('express');
-const session = require('express-sessions');
+const session = require('express-session');
 const { getQuestion, isCorrectAnswer } = require('./utils/mathUtilities');
 const app = express();
 const port = 3000;
@@ -23,10 +23,6 @@ app.get('/', (req, res) => {
 });
 
 app.get('/quiz', (req, res) => {
-  res.render('quiz');
-});
-
-app.get('/quiz', (req, res) => {
   const questionObject = getQuestion();
   req.session.currentQuestion = questionObject.question;
   req.session.correctAnswer = questionObject.answer;
@@ -40,7 +36,10 @@ app.post('/quiz', (req, res) => {
 
   if (isCorrect) {
     req.session.streak = (req.session.streak || 0) + 1;
-    res.redirect('/');
+    res.redirect('/quiz-complete');
+  } else {
+    req.session.streak = 0;
+    res.redirect('/quiz-complete');
   }
   console.log(`Answer: ${answer}`);
 
@@ -48,6 +47,11 @@ app.post('/quiz', (req, res) => {
   //Logic must be added here to check if the answer is correct, then track the streak and redirect properly
   //By default we'll just redirect to the homepage again.
   //   res.redirect('/');
+});
+
+app.get('/quiz-complete', (req, res) => {
+  const streak = req.session.streak;
+  res.render('quiz-complete', { streak });
 });
 
 // Start the server
