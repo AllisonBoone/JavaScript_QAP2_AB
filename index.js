@@ -18,7 +18,8 @@ app.use(
 
 //Some routes required for full functionality are missing here. Only get routes should be required
 app.get('/', (req, res) => {
-  res.render('index');
+  const lastStreak = req.session.streak || 'No streak recorded';
+  res.render('index', { lastStreak });
 });
 
 app.get('/quiz', (req, res) => {
