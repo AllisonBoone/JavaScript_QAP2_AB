@@ -26,6 +26,13 @@ app.get('/quiz', (req, res) => {
   res.render('quiz');
 });
 
+app.get('/quiz', (req, res) => {
+  const questionObject = getQuestion();
+  req.session.currentQuestion = questionObject.question;
+  req.session.correctAnswer = questionObject.answer;
+  res.render('quiz', { question: questionObject.question });
+});
+
 //Handles quiz submissions.
 app.post('/quiz', (req, res) => {
   const { answer } = req.body;
