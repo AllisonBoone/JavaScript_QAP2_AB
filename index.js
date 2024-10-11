@@ -35,13 +35,19 @@ app.get('/quiz', (req, res) => {
 
 //Handles quiz submissions.
 app.post('/quiz', (req, res) => {
-  const { answer } = req.body;
+  const userAnswer = parseFloat(req.answer);
+  const isCorrect = isCorrectAnswer(req.session.currentQuestion, userAnswer);
+
+  if (isCorrect) {
+    req.session.streak = (req.session.streak || 0) + 1;
+    res.redirect('/');
+  }
   console.log(`Answer: ${answer}`);
 
   //answer will contain the value the user entered on the quiz page
   //Logic must be added here to check if the answer is correct, then track the streak and redirect properly
   //By default we'll just redirect to the homepage again.
-  res.redirect('/');
+  //   res.redirect('/');
 });
 
 // Start the server
