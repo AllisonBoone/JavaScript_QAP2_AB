@@ -31,7 +31,7 @@ app.get('/quiz', (req, res) => {
 
 //Handles quiz submissions.
 app.post('/quiz', (req, res) => {
-  const userAnswer = parseFloat(req.answer);
+  const userAnswer = parseFloat(req.body.answer);
   const isCorrect = isCorrectAnswer(req.session.currentQuestion, userAnswer);
 
   if (isCorrect) {
