@@ -28,7 +28,10 @@ function getQuestion() {
  * @returns {boolean} True if the answer was correct, false otherwise.
  */
 function isCorrectAnswer(question, answer) {
-  return false;
+  const correctAnswer = eval(question);
+  return (
+    Math.round(correctAnswer * 100) / 100 === Math.round(answer * 100) / 100
+  );
 }
 
 module.exports = {
