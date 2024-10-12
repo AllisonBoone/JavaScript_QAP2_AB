@@ -41,7 +41,7 @@ app.post('/quiz', (req, res) => {
     req.session.streak = 0;
     res.redirect('/quiz-complete');
   }
-  console.log(`Answer: ${answer}`);
+  console.log(`Answer: ${userAnswer}`);
 
   //answer will contain the value the user entered on the quiz page
   //Logic must be added here to check if the answer is correct, then track the streak and redirect properly
