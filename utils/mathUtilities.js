@@ -17,7 +17,7 @@ function getQuestion() {
   const question = `${num1} ${randomOperations} ${num2}`;
   const answer = eval(question);
 
-  return question, answer;
+  return { question, answer };
 }
 
 /**
