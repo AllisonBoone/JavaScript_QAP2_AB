@@ -1,5 +1,6 @@
 const { isCorrectAnswer, getQuestion } = require('../../utils/mathUtilities');
 
+// Test for GetQuestion function
 describe('Test for getQuestion', () => {
   test('generate valid question with an answer', () => {
     const { question, answer } = getQuestion();
@@ -8,6 +9,7 @@ describe('Test for getQuestion', () => {
   });
 });
 
+// Test for isCorrectAnswer function (true, false)
 describe('Tests for isCorrectAnswer', () => {
   test('return true for correct answer', () => {
     const question = '1 + 1';

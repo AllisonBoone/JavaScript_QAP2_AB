@@ -8,6 +8,7 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
+// Session middleware to store user quiz data
 app.use(
   session({
     secret: 'quiz-secret',
@@ -16,13 +17,16 @@ app.use(
   })
 );
 
+// Array to store top 10 leaderboard scores
 let leaderboards = [];
 
+// Route for the homepage
 app.get('/', (req, res) => {
   const lastStreak = req.session.streak || 'No streak recorded';
   res.render('index', { lastStreak });
 });
 
+// Route to quiz page also displays random question
 app.get('/quiz', (req, res) => {
   const questionObject = getQuestion();
   req.session.currentQuestion = questionObject.question;
@@ -33,6 +37,7 @@ app.get('/quiz', (req, res) => {
   });
 });
 
+// Route for quiz completion and showing streak
 app.post('/quiz', (req, res) => {
   const userAnswer = parseFloat(req.body.answer);
   const isCorrect = isCorrectAnswer(req.session.currentQuestion, userAnswer);
@@ -53,11 +58,13 @@ app.post('/quiz', (req, res) => {
   console.log(`Answer: ${userAnswer}`);
 });
 
+// Route to quiz complete page
 app.get('/quiz-complete', (req, res) => {
   const streak = req.session.streak;
   res.render('quiz-complete', { streak });
 });
 
+// Route to leaderboard
 app.get('/leaderboard', (req, res) => {
   const topLeaderboards = leaderboards
     .sort((a, b) => b.streak - a.streak)

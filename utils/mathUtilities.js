@@ -1,3 +1,4 @@
+// Function to generate random math question
 function getQuestion() {
   const operations = ['+', '-', '*', '/'];
   const randomOperations =
@@ -5,6 +6,7 @@ function getQuestion() {
   const num1 = Math.floor(Math.random() * 100);
   const num2 = Math.floor(Math.random() * 100);
 
+  // Generates answer based on the question
   let answer;
   switch (randomOperations) {
     case '+':
@@ -25,10 +27,12 @@ function getQuestion() {
   return { question, answer };
 }
 
+// Function to check if answer is correct
 function isCorrectAnswer(question, answer) {
   const [num1, operator, num2] = question.split(' ');
   let correctAnswer;
 
+  // Decides correct answer based on the question and answer given
   switch (operator) {
     case '+':
       correctAnswer = parseFloat(num1) + parseFloat(num2);
@@ -44,6 +48,7 @@ function isCorrectAnswer(question, answer) {
       break;
   }
 
+  // Compares user answer to correct answer and rounds to 2 decimal places
   return (
     Math.round(correctAnswer * 100) / 100 === Math.round(answer * 100) / 100
   );
