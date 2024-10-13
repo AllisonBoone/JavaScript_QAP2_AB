@@ -7,6 +7,8 @@
     <p>Answer the question below:</p>
     <p> <%= question %> </p>
 
+    <p>Your current streak: <%= streak || 0 %> correct answers.</p>
+
     <form action="/quiz" method="POST">
         <label for="answer">Your Answer:</label>
         <input type="number" id="answer" name="answer" required>
