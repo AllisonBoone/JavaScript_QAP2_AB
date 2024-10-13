@@ -1,6 +1,9 @@
 <%- include('partials/header') %>
 
+<main class="main-content index_container">
+
     <h1>Quiz Complete!</h1>
+    
     <p>Your current streak is: <%= streak %> correct answers.</p>
 
     <form action="/quiz" method="GET">
@@ -10,6 +13,8 @@
     <form action="/" method="GET">
         <button type="submit">Return to Home Page</button>
     </form>
+
+</main>
 </body>
 </html>
 
