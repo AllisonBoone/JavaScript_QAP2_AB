@@ -39,11 +39,17 @@ app.post('/quiz', (req, res) => {
 
   if (isCorrect) {
     req.session.streak = (req.session.streak || 0) + 1;
-    res.redirect('/quiz-complete');
   } else {
+    if (req.session.streak > 0) {
+      leaderboards.push({
+        streak: req.session.streak,
+        correctAnswers: req.session.streak,
+        date: new Date(),
+      });
+    }
     req.session.streak = 0;
-    res.redirect('/quiz-complete');
   }
+  res.redirect('/quiz-complete');
   console.log(`Answer: ${userAnswer}`);
 });
 
