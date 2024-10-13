@@ -14,4 +14,9 @@ describe('Tests for isCorrectAnswer', () => {
     const answer = 2;
     expect(isCorrectAnswer(question, answer)).toBe(true);
   });
+  test('return false for incorrect answer', () => {
+    const question = '2 + 2';
+    const answer = 5;
+    expect(isCorrectAnswer(question, answer)).toBe(false);
+  });
 });
