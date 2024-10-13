@@ -4,8 +4,12 @@
 
         <h1>Welcome to the Math Competition App</h1>
 
+        <p>
+            <%= lastStreak === 'No streak recorded' ? 'No streak recorded yet.' : 'Last recorded streak: ' + lastStreak + ' correct answers.' %>
+        </p>
+
         <div class="navigation__container">
-            <a href="/JavaScript_QAP2_AB/views/leaderboards.ejs">
+            <a href="/leaderboard">
                 View Leaderboards
             </a>
             <a href="/quiz">
